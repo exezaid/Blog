@@ -1,11 +1,12 @@
 class Admin::PostsController < ApplicationController
+  before_filter :get_current_post, :only => [:show, :edit, :update, :destroy]
+
 
   def index
     @posts = Post.all
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def new
@@ -22,11 +23,9 @@ class Admin::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
       redirect_to admin_posts_path
     else
@@ -36,9 +35,13 @@ class Admin::PostsController < ApplicationController
 
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to admin_posts_path
+  end
+
+protected
+  def get_current_post
+    @post = Post.find(params[:id])
   end
 
 end
