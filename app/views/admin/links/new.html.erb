@@ -2,6 +2,16 @@
 
 <div class="form-box">
   <%= form_for [:admin, @post, @link] do |f| %>
+      <% if @link.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@link.errors.count, "error") %> Error from link:</h2>
+          <ul>
+          <% @link.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
     <%= render :partial => 'form', :locals => {:f =>  f} %>
 
     <div class="actions">
@@ -11,4 +21,3 @@
     </div>
   <% end %>
 </div>
-
