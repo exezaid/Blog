@@ -6,7 +6,9 @@ class Admin::PostsController < ApplicationController
     @posts = Post.all
   end
 
+
   def show
+    @links = @post.links
   end
 
   def new
