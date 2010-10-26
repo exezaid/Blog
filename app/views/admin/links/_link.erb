@@ -1,5 +1,5 @@
 <li>
-  <h3><%= link_to link.url, link.url %></h3>
+  <%= link_to link.url, link.url,  :target => "_blank" %>
   <div class="actions">
     <%= link_to 'Edit', [:edit, :admin, @post, @link] %>
     <%= link_to 'Remove', [:admin, @post, @link], :method => :delete,
